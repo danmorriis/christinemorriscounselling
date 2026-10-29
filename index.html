@@ -188,6 +188,7 @@
   .hero-copy h1{font-size:clamp(2.4rem,5.4vw,4.4rem);color:var(--white);max-width:16ch;}
   .hero-copy h1 em{font-style:italic;color:var(--gold);}
   .hero-copy .role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--eucalyptus);}
+  .hero-copy .hero-sub{max-width:38ch;font-size:.98rem;color:rgba(255,255,255,.88);}
   .hero-copy .btn{margin-top:.6rem;}
 
   .two-col{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;}
@@ -221,7 +222,9 @@
   .growth p{max-width:48ch;color:rgba(255,255,255,.88);}
 
   .way-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+  .way-grid-3{grid-template-columns:repeat(3,1fr);}
   @media (max-width:860px){.way-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:640px){.way-grid-3{grid-template-columns:1fr;}}
   .way-card{
     background:var(--cream);border:1px solid var(--line);border-radius:1.1rem;padding:1.8rem 1.4rem;
     display:flex;flex-direction:column;gap:.7rem;
@@ -255,19 +258,38 @@
   }
   .mem-list .icon{width:18px;height:18px;color:var(--sage);flex:none;}
 
+  .qual-list{display:flex;flex-direction:column;gap:.9rem;max-width:640px;margin:1.6rem auto 0;text-align:left;}
+  .qual-list li{
+    background:var(--white);border:1px solid var(--line);border-radius:.8rem;
+    padding:1rem 1.3rem;font-weight:700;color:var(--olive);font-size:.95rem;
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .qual-list .icon{width:18px;height:18px;color:var(--sage);flex:none;}
+
   .expect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:900px;margin:0 auto;}
+  .expect-grid.approach-grid{grid-template-columns:repeat(4,1fr);margin-top:1.8rem;}
   @media (max-width:760px){.expect-grid{grid-template-columns:1fr;}}
+  @media (max-width:760px){.expect-grid.approach-grid{grid-template-columns:repeat(2,1fr);}}
   .expect-card{text-align:center;display:flex;flex-direction:column;gap:.6rem;align-items:center;padding:1rem;}
   .expect-card .num{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-dark);font-size:1.6rem;}
 
   /* ===================== HOW I CAN HELP ===================== */
-  .help-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center;}
-  @media (max-width:760px){.help-row{grid-template-columns:1fr;}}
-  .help-row:not(:last-child){margin-bottom:clamp(3rem,6vw,5rem);}
-  .help-row.flip .art-col{order:2;}
-  @media (max-width:760px){.help-row.flip .art-col{order:0;}}
-  .help-tag{display:inline-flex;align-items:center;gap:.5rem;background:var(--eucalyptus);color:var(--sage-dark);
-    font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border-radius:999px;margin-bottom:.9rem;}
+  .service-card{
+    background:var(--white);border:1px solid var(--line);border-radius:1.1rem;
+    padding:2rem 1.8rem;display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;text-align:left;
+  }
+  .service-card h3{font-size:1.25rem;}
+  .service-intro{font-size:.88rem;color:var(--ink-muted);font-weight:700;letter-spacing:.02em;margin-top:.3rem;}
+  .service-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem;}
+  .service-list li{
+    background:var(--stone);color:var(--olive);font-size:.84rem;font-weight:700;
+    padding:.35rem .75rem;border-radius:999px;
+  }
+
+  .help-overlay-label{
+    position:absolute;left:0;right:0;bottom:0;padding:.7rem .8rem;
+    background:rgba(73,85,66,0.82);color:var(--white);font-weight:700;font-size:.84rem;text-align:center;
+  }
 
   /* ===================== FEES & FAQ ===================== */
   .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:760px;margin:0 auto;}
@@ -435,14 +457,15 @@
     </div>
     <div class="hero-copy">
       <span class="eyebrow">Christine Morris Counselling</span>
-      <h1>A Safe Place To <em>Be Yourself</em></h1>
+      <h1>A safe place to be <em>yourself</em></h1>
       <span class="role">Person-Centred Counsellor</span>
-      <a href="#contact" class="btn btn-on-dark">Book A Free Consultation</a>
+      <p class="hero-sub">Supporting adults, young people aged 11+, and neurodivergent individuals and families.</p>
+      <a href="#contact" class="btn btn-on-dark">Book a Free Consultation</a>
     </div>
   </div>
 
   <section class="bg-cream">
-    <div class="wrap two-col">
+    <div class="wrap two-col reverse">
       <div class="art-col">
         <div class="art square">
           <span class="art-tag">Photo &middot; Christine</span>
@@ -456,10 +479,15 @@
       </div>
       <div>
         <span class="eyebrow">Welcome</span>
-        <h2 style="margin-top:.6rem;font-size:clamp(1.7rem,3vw,2.3rem);">A warm space, at your own pace</h2>
+        <h2 style="margin-top:.6rem;font-size:clamp(1.7rem,3vw,2.3rem);">A Warm Welcome</h2>
         <p class="prose" style="margin-top:1.1rem;color:var(--ink-muted);">
-          Life can sometimes feel overwhelming, and reaching out for support isn't always easy.
-          I offer a warm, compassionate space where you can explore your thoughts and feelings at your own pace.
+          Reaching out for support isn't always easy. Whether you're experiencing anxiety, low mood, grief,
+          relationship difficulties, trauma, low self-esteem, or simply feeling overwhelmed, you do not have
+          to face it alone.
+        </p>
+        <p class="prose" style="margin-top:1rem;color:var(--ink-muted);">
+          I offer a compassionate, non-judgemental space where you can explore your thoughts and feelings
+          at your own pace and feel truly heard.
         </p>
         <p class="signature">— Christine</p>
       </div>
@@ -469,63 +497,44 @@
   <section class="bg-stone">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Areas I Work With</span>
-        <h2>Support for whatever you're carrying</h2>
+        <span class="eyebrow">Areas of Support</span>
+        <h2>Whatever you're carrying, there's space for it here</h2>
       </div>
       <div class="card-grid">
         <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-wave"/></svg></span><h3>Anxiety</h3><p>Gentle tools to ease racing thoughts and find steadier ground.</p></div>
-        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-moon"/></svg></span><h3>Depression</h3><p>A compassionate space to understand low mood and rebuild energy.</p></div>
+        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-moon"/></svg></span><h3>Depression &amp; Low Mood</h3><p>A compassionate space to understand low mood and rebuild energy.</p></div>
         <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-leaf"/></svg></span><h3>Grief &amp; Loss</h3><p>Room to grieve in your own way and your own time.</p></div>
         <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-shield"/></svg></span><h3>Trauma</h3><p>A paced, safety-first approach to processing difficult experiences.</p></div>
-        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-sun"/></svg></span><h3>Self-Esteem</h3><p>Rebuilding a kinder, steadier relationship with yourself.</p></div>
-        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-infinity"/></svg></span><h3>Neurodiversity</h3><p>Affirming support shaped around how your mind works.</p></div>
+        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-sun"/></svg></span><h3>Self-Esteem &amp; Confidence</h3><p>Rebuilding a kinder, steadier relationship with yourself.</p></div>
+        <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-infinity"/></svg></span><h3>Neurodiversity Support</h3><p>Affirming support shaped around how your mind works.</p></div>
       </div>
-    </div>
-  </section>
-
-  <section class="growth">
-    <div class="growth-bg">
-      <svg viewBox="0 0 1400 600" preserveAspectRatio="xMidYMid slice">
-        <rect width="1400" height="600" fill="#2E4338"/>
-        <circle cx="700" cy="620" r="260" fill="#3D5A4C" opacity=".6"/>
-        <circle cx="700" cy="640" r="160" fill="#495542" opacity=".8"/>
-        <path d="M700 500 C 690 420 710 380 700 310" stroke="#DDE6D8" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <path d="M700 420c-40-10-60-40-55-75 38 2 62 32 55 75Z" fill="#9FAF96"/>
-        <path d="M700 380c42-14 68-46 62-84-40 4-68 38-62 84Z" fill="#C7D9C3"/>
-        <circle cx="700" cy="600" r="3" fill="#C7B189"/>
-      </svg>
-    </div>
-    <div class="wrap">
-      <span class="eyebrow" style="color:var(--gold);">Why Therapy Works</span>
-      <h2>Growth Happens When We Feel Safe Enough To Be Ourselves</h2>
-      <p>
-        Real change rarely comes from being pushed — it grows from feeling genuinely heard, accepted,
-        and unhurried. Together we build that safety, one session at a time.
-      </p>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="#help" class="btn btn-ghost">View All Services</a>
+      </div>
     </div>
   </section>
 
   <section class="bg-eucalyptus">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Ways We Can Work Together</span>
-        <h2>Whatever feels right for you</h2>
+        <span class="eyebrow">How I Work</span>
+        <h2>Support shaped around you</h2>
       </div>
-      <div class="way-grid">
-        <div class="way-card"><svg class="icon"><use href="#i-laptop"/></svg><h3>Online</h3><p>Secure video sessions from wherever is comfortable for you.</p></div>
-        <div class="way-card"><svg class="icon"><use href="#i-phone"/></svg><h3>Telephone</h3><p>No screen needed — just a quiet space and a voice call.</p></div>
-        <div class="way-card"><svg class="icon"><use href="#i-path"/></svg><h3>Walk &amp; Talk</h3><p>Talking therapy alongside gentle movement outdoors.</p></div>
-        <div class="way-card"><svg class="icon"><use href="#i-people"/></svg><h3>Face-to-Face</h3><p>In-person sessions in a calm, private room.</p></div>
+      <div class="way-grid way-grid-3">
+        <div class="way-card"><svg class="icon"><use href="#i-sprig"/></svg><h3>Person-Centred Counselling</h3><p>A space where you can be yourself.</p></div>
+        <div class="way-card"><svg class="icon"><use href="#i-laptop"/></svg><h3>Online &amp; Telephone</h3><p>Flexible support from home.</p></div>
+        <div class="way-card"><svg class="icon"><use href="#i-path"/></svg><h3>Walk &amp; Talk Therapy</h3><p>Counselling while enjoying the outdoors.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="bg-cream cta-band">
-    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:1.4rem;">
+  <section class="bg-cream">
+    <div class="wrap" style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.4rem;">
+      <span class="eyebrow">What Clients Say</span>
       <div class="divider"><svg viewBox="0 0 24 24"><use href="#i-sprig"/></svg></div>
-      <h2>Ready To Take The First Step?</h2>
-      <p class="prose" style="text-align:center;color:var(--ink-muted);">A free 15-minute consultation is the easiest way to see if we're a good fit — no pressure, just a conversation.</p>
-      <a href="#contact" class="btn btn-primary">Book A Free Consultation</a>
+      <p class="display" style="font-style:italic;font-size:1.4rem;max-width:36ch;color:var(--ink-muted);">
+        Testimonials coming soon.
+      </p>
     </div>
   </section>
 
@@ -535,6 +544,7 @@
 <section id="page-about" class="page" hidden>
 
   <div class="page-banner">
+    <span class="art-tag">Photo &middot; Christine (hair up)</span>
     <div class="page-banner-bg">
       <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice">
         <rect width="1400" height="500" fill="#3D5A4C"/>
@@ -547,30 +557,36 @@
     </div>
     <div class="wrap">
       <span class="eyebrow" style="color:var(--gold);">About Me</span>
-      <h1>Getting to Know Christine</h1>
+      <h1>Meet Christine Morris</h1>
     </div>
   </div>
 
   <section class="bg-cream">
     <div class="wrap">
 
-      <div class="story-block">
-        <span class="eyebrow">My Story</span>
-        <h2 style="font-size:1.8rem;">Why I became a counsellor</h2>
-        <p style="color:var(--ink-muted);">I've always believed that people carry more strength than they realise — they
-        often just need a safe, unhurried space to find it again. That belief is what led me from my own
-        experiences of life's harder chapters into training as a counsellor, so I could offer others the
-        same steady presence I once needed myself.</p>
+      <div class="story-block" style="text-align:center;max-width:720px;">
+        <p style="color:var(--ink-muted);">I'm a registered BACP member and Person-Centred Counsellor, working with
+        adults and young people aged 11+. I have particular experience supporting neurodivergent clients and
+        their families, and I bring a warm, accepting, and genuine approach to every session.</p>
+        <ul class="mem-list" style="margin-top:1.8rem;">
+          <li><svg class="icon"><use href="#i-check"/></svg>Registered BACP member</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Person-Centred Counsellor</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Work with adults and young people aged 11+</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Experience supporting neurodivergent clients and families</li>
+        </ul>
       </div>
 
       <div class="sprig-divider"><svg viewBox="0 0 24 24"><use href="#i-sprig"/></svg></div>
 
-      <div class="story-block">
+      <div class="story-block" style="text-align:center;max-width:none;">
         <span class="eyebrow">My Approach</span>
-        <h2 style="font-size:1.8rem;">Person-centred, always</h2>
-        <p style="color:var(--ink-muted);">I work in a person-centred way, which means you lead and I listen —
-        without judgement, agendas, or quick fixes. Sessions are paced around what feels right for you, drawing
-        on integrative techniques only where they genuinely serve your process.</p>
+        <h2 style="font-size:1.8rem;">Empathy. Acceptance. Authenticity.</h2>
+        <div class="expect-grid approach-grid">
+          <div class="expect-card"><h3 style="font-size:1.1rem;">Empathy</h3><p style="font-size:.9rem;color:var(--ink-muted);">Understanding your experience from your point of view, not mine.</p></div>
+          <div class="expect-card"><h3 style="font-size:1.1rem;">Acceptance</h3><p style="font-size:.9rem;color:var(--ink-muted);">A non-judgemental space, whatever you bring to it.</p></div>
+          <div class="expect-card"><h3 style="font-size:1.1rem;">Authenticity</h3><p style="font-size:.9rem;color:var(--ink-muted);">Showing up as genuinely myself, so you can too.</p></div>
+          <div class="expect-card"><h3 style="font-size:1.1rem;">Your Pace</h3><p style="font-size:.9rem;color:var(--ink-muted);">Working at the client's pace, never rushed.</p></div>
+        </div>
       </div>
 
       <div class="sprig-divider"><svg viewBox="0 0 24 24"><use href="#i-sprig"/></svg></div>
@@ -578,39 +594,26 @@
       <div class="story-block" style="text-align:center;max-width:none;">
         <span class="eyebrow">Qualifications</span>
         <h2 style="font-size:1.8rem;">Trained, supervised, accountable</h2>
-        <ul class="mem-list">
-          <li><svg class="icon"><use href="#i-check"/></svg>Diploma in Person-Centred Counselling</li>
-          <li><svg class="icon"><use href="#i-check"/></svg>Certificate in Counselling Skills</li>
-          <li><svg class="icon"><use href="#i-check"/></svg>Enhanced DBS Checked</li>
-          <li><svg class="icon"><use href="#i-check"/></svg>Regular clinical supervision</li>
+        <ul class="qual-list">
+          <li><svg class="icon"><use href="#i-check"/></svg>Level 5 Certificate in Counselling Children and Young People</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Level 4 Diploma in Therapeutic Counselling</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Online and Telephone Counselling Certificate</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Foundation Certificate in Bereavement</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Suicide Intervention Training</li>
         </ul>
+        <p style="margin-top:1.1rem;font-style:italic;color:var(--ink-muted);font-family:'Cormorant Garamond',serif;">Plus ongoing CPD training throughout the year.</p>
       </div>
 
       <div class="sprig-divider"><svg viewBox="0 0 24 24"><use href="#i-sprig"/></svg></div>
 
-      <div class="story-block" style="text-align:center;max-width:none;">
-        <span class="eyebrow">Professional Memberships</span>
-        <h2 style="font-size:1.8rem;">Held to a professional standard</h2>
-        <div class="badge-row" style="justify-content:center;color:var(--olive);">
-          <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--stone);"><svg class="icon"><use href="#i-shield"/></svg>MBACP Member</span>
-          <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--stone);"><svg class="icon"><use href="#i-check"/></svg>Counselling Directory Verified</span>
-        </div>
+      <div class="story-block" style="text-align:center;max-width:56ch;">
+        <span class="eyebrow">A Personal Message</span>
+        <p class="display" style="font-style:italic;font-size:1.45rem;color:var(--olive);margin-top:1rem;">
+          "I believe that healing begins when we feel truly heard and accepted. My aim is to offer a
+          safe, supportive space where you can explore whatever life is bringing your way."
+        </p>
       </div>
 
-    </div>
-  </section>
-
-  <section class="bg-stone">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">What Clients Can Expect</span>
-        <h2>Before we meet</h2>
-      </div>
-      <div class="expect-grid">
-        <div class="expect-card"><span class="num">01</span><h3 style="font-size:1.1rem;">Free consultation</h3><p style="font-size:.9rem;color:var(--ink-muted);">A relaxed 15-minute call to see if we're a good fit.</p></div>
-        <div class="expect-card"><span class="num">02</span><h3 style="font-size:1.1rem;">Your pace, your space</h3><p style="font-size:.9rem;color:var(--ink-muted);">No judgement, no agenda — just a space that's yours.</p></div>
-        <div class="expect-card"><span class="num">03</span><h3 style="font-size:1.1rem;">Confidential, always</h3><p style="font-size:.9rem;color:var(--ink-muted);">What's shared in the room stays in the room.</p></div>
-      </div>
     </div>
   </section>
 
@@ -626,68 +629,90 @@
         <path d="M-50 320 C 300 260 500 320 700 280 C 900 240 1100 300 1450 260 L1450 400 L-50 400 Z" fill="#3D5A4C" opacity=".7"/>
       </svg>
     </div>
-    <div class="wrap"><h1>How I Can Help</h1></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold);">How I Can Help</span>
+      <h1>Supporting You Through Life's Challenges</h1>
+    </div>
   </div>
 
   <section class="bg-cream">
     <div class="wrap">
+      <div class="card-grid service-grid">
 
-      <div class="help-row">
-        <div>
-          <span class="help-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-people"/></svg>Adults</span>
-          <h2 style="font-size:1.8rem;">Space to pause and reflect</h2>
-          <p class="prose" style="color:var(--ink-muted);margin-top:.8rem;">Counselling for adults navigating anxiety, low mood,
-          life transitions, or simply needing somewhere unhurried to think out loud.</p>
+        <div class="service-card">
+          <span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-people"/></svg></span>
+          <h3>Adults</h3>
+          <p class="service-intro">Some issues I can support you with:</p>
+          <ul class="service-list">
+            <li>Anxiety</li><li>Depression</li><li>Grief and loss</li><li>Trauma</li>
+            <li>Domestic abuse</li><li>Relationships</li><li>Self-worth</li>
+            <li>Chronic illness</li><li>Infertility</li>
+          </ul>
         </div>
-        <div class="art-col">
-          <div class="art rect-wide"><span class="art-tag">Photo &middot; Woodland</span>
-            <svg viewBox="0 0 400 250"><rect width="400" height="250" fill="#DDE6D8"/><path d="M0 220c80-30 140 10 220-10s120-40 180-10v50H0z" fill="#9FAF96"/></svg>
-          </div>
+
+        <div class="service-card">
+          <span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-sun"/></svg></span>
+          <h3>Young People (11+)</h3>
+          <p class="service-intro">Support with:</p>
+          <ul class="service-list">
+            <li>School pressures</li><li>Anxiety</li><li>Low self-esteem</li>
+            <li>Depression</li><li>Identity</li><li>Confidence</li><li>Family issues</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;"><use href="#i-infinity"/></svg></span>
+          <h3>Neurodivergent Support</h3>
+          <p class="service-intro">Support for:</p>
+          <ul class="service-list">
+            <li>Autism</li><li>ADHD</li><li>Parents and carers</li>
+            <li>Young people 11+</li><li>Emotional wellbeing</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Therapy Options</span>
+        <h2>However works best for you</h2>
+      </div>
+      <div class="way-grid">
+        <div class="art square"><span class="art-tag">Photo &middot; Online</span>
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#DDE6D8"/><rect x="70" y="100" width="160" height="100" rx="8" fill="none" stroke="#495542" stroke-width="4"/><rect x="100" y="210" width="100" height="8" rx="4" fill="#7D8F75"/></svg>
+          <span class="help-overlay-label">Online Counselling</span>
+        </div>
+        <div class="art square"><span class="art-tag">Photo &middot; Telephone</span>
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#EEEAE2"/><path d="M110 90h20l12 36-16 12a90 90 0 0 0 46 46l12-16 36 12v20a16 16 0 0 1-16 16c-64 0-110-46-110-110a16 16 0 0 1 16-16Z" fill="none" stroke="#495542" stroke-width="4"/></svg>
+          <span class="help-overlay-label">Telephone Counselling</span>
+        </div>
+        <div class="art square"><span class="art-tag">Photo &middot; Path, future shoot</span>
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#DDE6D8"/><path d="M150 280c-10-80 20-120 0-200" stroke="#F8F5EF" stroke-width="22" fill="none"/></svg>
+          <span class="help-overlay-label">Walk &amp; Talk Therapy</span>
+        </div>
+        <div class="art square"><span class="art-tag">Photo &middot; Face-to-face</span>
+          <svg viewBox="0 0 300 300"><rect width="300" height="300" fill="#EEEAE2"/><circle cx="120" cy="140" r="30" fill="#9FAF96"/><circle cx="190" cy="150" r="24" fill="#C7D9C3"/><path d="M70 260c0-45 30-75 60-75M140 260c0-38 24-62 54-62" fill="none" stroke="#495542" stroke-width="3"/></svg>
+          <span class="help-overlay-label">Face-to-Face Counselling</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="help-row flip">
-        <div>
-          <span class="help-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-sun"/></svg>Young People (11+)</span>
-          <h2 style="font-size:1.8rem;">A space that feels like theirs</h2>
-          <p class="prose" style="color:var(--ink-muted);margin-top:.8rem;">Age-appropriate, relaxed sessions for young people
-          finding school, friendships, identity, or family life difficult to navigate.</p>
-        </div>
-        <div class="art-col">
-          <div class="art rect-wide"><span class="art-tag">Photo &middot; Seedling</span>
-            <svg viewBox="0 0 400 250"><rect width="400" height="250" fill="#EEEAE2"/><path d="M200 220v-60" stroke="#495542" stroke-width="4" fill="none"/><path d="M200 170c-25-5-40-25-36-50 25 2 42 22 36 50Z" fill="#7D8F75"/></svg>
-          </div>
-        </div>
+  <section class="bg-cream">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What To Expect</span>
+        <h2>Getting started</h2>
       </div>
-
-      <div class="help-row">
-        <div>
-          <span class="help-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-infinity"/></svg>Neurodivergent Support</span>
-          <h2 style="font-size:1.8rem;">Affirming, not fixing</h2>
-          <p class="prose" style="color:var(--ink-muted);margin-top:.8rem;">Support shaped around how you actually think and feel,
-          rather than asking you to mask or conform to a neurotypical standard.</p>
-        </div>
-        <div class="art-col">
-          <div class="art rect-wide"><span class="art-tag">Photo &middot; Nature detail</span>
-            <svg viewBox="0 0 400 250"><rect width="400" height="250" fill="#DDE6D8"/><circle cx="200" cy="125" r="60" fill="none" stroke="#7D8F75" stroke-width="3"/><circle cx="160" cy="125" r="34" fill="none" stroke="#C7B189" stroke-width="3"/></svg>
-          </div>
-        </div>
+      <div class="expect-grid approach-grid">
+        <div class="expect-card"><span class="num">01</span><h3 style="font-size:1.05rem;">Free 15-minute consultation</h3></div>
+        <div class="expect-card"><span class="num">02</span><h3 style="font-size:1.05rem;">Initial assessment</h3></div>
+        <div class="expect-card"><span class="num">03</span><h3 style="font-size:1.05rem;">Weekly 50-minute sessions</h3></div>
+        <div class="expect-card"><span class="num">04</span><h3 style="font-size:1.05rem;">Reviews every 4&ndash;6 weeks</h3></div>
       </div>
-
-      <div class="help-row flip">
-        <div>
-          <span class="help-tag"><svg class="icon" style="width:14px;height:14px;"><use href="#i-path"/></svg>Walk &amp; Talk Therapy</span>
-          <h2 style="font-size:1.8rem;">Therapy, out in the open air</h2>
-          <p class="prose" style="color:var(--ink-muted);margin-top:.8rem;">For clients who find it easier to open up while moving —
-          sessions take place on quiet local paths, side by side rather than face to face.</p>
-        </div>
-        <div class="art-col">
-          <div class="art rect-wide"><span class="art-tag">Photo &middot; Path, future shoot</span>
-            <svg viewBox="0 0 400 250"><rect width="400" height="250" fill="#EEEAE2"/><path d="M200 250c-10-80 20-120 0-200" stroke="#DDE6D8" stroke-width="30" fill="none"/></svg>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -705,43 +730,50 @@
 
       <div class="price-grid">
         <div class="price-card">
-          <h3>Online Sessions</h3>
-          <div class="amount"><sup>£</sup>50</div>
-          <div class="mins">50 Minutes</div>
+          <h3>Online &amp; Telephone</h3>
+          <div class="amount"><sup>£</sup>55</div>
+          <div class="mins">per 50-minute session</div>
         </div>
         <div class="price-card">
-          <h3>Face to Face</h3>
-          <div class="amount"><sup>£</sup>60</div>
-          <div class="mins">50 Minutes</div>
+          <h3>Face-to-Face &amp; Walk and Talk</h3>
+          <div class="amount"><sup>£</sup>65</div>
+          <div class="mins">per 50-minute session</div>
         </div>
       </div>
 
       <div class="faq-list">
         <details class="faq" open>
-          <summary>What happens in the first session?</summary>
-          <div class="faq-body">We'll spend the time getting to know each other — what's brought you to counselling,
-          what you'd like to get from it, and how I work. There's no pressure to share anything before you're ready.</div>
+          <summary>How long are sessions?</summary>
+          <div class="faq-body">50 minutes.</div>
         </details>
         <details class="faq">
-          <summary>How long does counselling take?</summary>
-          <div class="faq-body">Everyone's different — some clients find a handful of sessions enough, others prefer
-          longer-term, open-ended work. We'll review this together as we go.</div>
+          <summary>Do you offer a free consultation?</summary>
+          <div class="faq-body">Yes, a free 15-minute telephone or online conversation.</div>
         </details>
         <details class="faq">
-          <summary>Is online counselling as effective as face-to-face?</summary>
-          <div class="faq-body">Research and client experience both suggest it can be just as effective — it often comes
-          down to personal preference and what helps you feel most comfortable opening up.</div>
+          <summary>How often are sessions?</summary>
+          <div class="faq-body">Usually weekly.</div>
         </details>
         <details class="faq">
-          <summary>Is everything I say confidential?</summary>
-          <div class="faq-body">Yes, with the rare exception of a serious risk to your safety or someone else's, in line
-          with BACP's ethical framework, which I'll explain fully in our first session.</div>
+          <summary>Are sessions confidential?</summary>
+          <div class="faq-body">Yes, except in rare safeguarding or legal circumstances.</div>
         </details>
         <details class="faq">
-          <summary>What's your cancellation policy?</summary>
-          <div class="faq-body">I ask for at least 48 hours' notice to reschedule or cancel a session wherever possible,
-          out of fairness to other clients.</div>
+          <summary>What is your cancellation policy?</summary>
+          <div class="faq-body">48 hours' notice is requested.</div>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone">
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow">Accreditations</span>
+      <div class="badge-row" style="justify-content:center;margin-top:1.2rem;">
+        <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--cream);"><svg class="icon"><use href="#i-shield"/></svg>BACP Registered Member</span>
+        <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--cream);"><svg class="icon"><use href="#i-check"/></svg>GDPR Compliant</span>
+        <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--cream);"><svg class="icon"><use href="#i-check"/></svg>ICO Registered</span>
+        <span class="badge" style="color:var(--olive);border-color:var(--line);background:var(--cream);"><svg class="icon"><use href="#i-laptop"/></svg>Online &amp; Telephone Trained</span>
       </div>
     </div>
   </section>
@@ -755,28 +787,29 @@
     <div class="wrap">
       <div class="section-head" style="margin-bottom:2.5rem;">
         <span class="eyebrow">Contact</span>
-        <h2>Let's start the conversation</h2>
+        <h2>Let's Start the Conversation</h2>
       </div>
 
       <div class="contact-grid">
         <form onsubmit="return false;">
           <div class="field"><label for="c-name">Name</label><input id="c-name" type="text" placeholder="Your name" required></div>
           <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="you@example.com" required></div>
-          <div class="field"><label for="c-phone">Phone (optional)</label><input id="c-phone" type="tel" placeholder="Your number"></div>
-          <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" placeholder="A little about what's brought you here..."></textarea></div>
+          <div class="field"><label for="c-phone">Telephone</label><input id="c-phone" type="tel" placeholder="Your number"></div>
+          <div class="field"><label for="c-msg">How can I help?</label><textarea id="c-msg" placeholder="A little about what's brought you here..."></textarea></div>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
 
           <div class="contact-info">
+            <div class="info-row"><svg class="icon"><use href="#i-phone"/></svg><div><h3>Telephone</h3><a href="tel:+447933393569">07933 393569</a><p style="font-style:italic;font-size:.82rem;margin-top:.2rem;">A dedicated Private Practice line may be added later.</p></div></div>
             <div class="info-row"><svg class="icon"><use href="#i-mail"/></svg><div><h3>Email</h3><a href="mailto:hello@christinemorriscounselling.co.uk?subject=Enquiry%20from%20website&amp;body=Hi%20Christine%2C%0A%0AI'd%20like%20to%20find%20out%20more%20about%20counselling%20sessions.">hello@christinemorriscounselling.co.uk</a></div></div>
-            <div class="info-row"><svg class="icon"><use href="#i-phone"/></svg><div><h3>Phone</h3><p>07000 000 000</p></div></div>
-            <div class="info-row"><svg class="icon"><use href="#i-clock"/></svg><div><h3>Availability</h3><p>Monday–Thursday, daytime &amp; evening sessions</p></div></div>
+            <div class="info-row"><svg class="icon"><use href="#i-pin"/></svg><div><h3>Location</h3><p>Stevenage, Hertfordshire — online counselling available UK-wide.</p></div></div>
+            <div class="info-row"><svg class="icon"><use href="#i-clock"/></svg><div><h3>Availability</h3><p>Mondays, Tuesdays and Thursdays, 11am to 8pm.</p></div></div>
           </div>
 
           <div class="quick-actions">
             <a class="btn btn-ghost" href="mailto:hello@christinemorriscounselling.co.uk?subject=Enquiry%20from%20website&amp;body=Hi%20Christine%2C%0A%0AI'd%20like%20to%20find%20out%20more%20about%20counselling%20sessions.">
               <svg class="icon" style="width:16px;height:16px;"><use href="#i-mail"/></svg> Email Me
             </a>
-            <a class="btn btn-ghost" href="https://wa.me/447000000000?text=Hi%20Christine%2C%20I%27d%20like%20to%20find%20out%20more%20about%20counselling%20sessions." target="_blank" rel="noopener">
+            <a class="btn btn-ghost" href="https://wa.me/447933393569?text=Hi%20Christine%2C%20I%27d%20like%20to%20find%20out%20more%20about%20counselling%20sessions." target="_blank" rel="noopener">
               <svg class="icon" style="width:16px;height:16px;"><use href="#i-whatsapp"/></svg> WhatsApp Me
             </a>
           </div>
@@ -787,17 +820,27 @@
             <span class="art-tag">Photo &middot; Calming nature</span>
             <svg viewBox="0 0 400 400"><rect width="400" height="400" fill="#EEEAE2"/><circle cx="200" cy="200" r="90" fill="none" stroke="#7D8F75" stroke-width="3"/><circle cx="200" cy="200" r="50" fill="none" stroke="#C7B189" stroke-width="3"/></svg>
           </div>
-          <div class="info-row" style="margin-top:1.3rem;"><svg class="icon"><use href="#i-pin"/></svg><div><h3>Based in</h3><p>Sessions available across the UK, online and in person</p></div></div>
-          <div class="map">
-            <svg viewBox="0 0 400 220" role="img" aria-label="Map placeholder">
-              <rect width="400" height="220" fill="#DDE6D8"/>
-              <path d="M0 140c60-20 100 10 160-5s110-30 240 0" stroke="#9FAF96" stroke-width="10" fill="none"/>
-              <circle cx="230" cy="110" r="7" fill="#C7B189"/>
-              <text x="200" y="200" text-anchor="middle" font-family="Lato, sans-serif" font-size="12" fill="#6E7266">Map placeholder — embed Google Maps here</text>
-            </svg>
+          <div class="map" style="position:relative;">
+            <span class="art-tag" style="z-index:1;">Counselling rooms yet to be arranged</span>
+            <iframe
+              src="https://maps.google.com/maps?q=Stevenage%2C+Hertfordshire&amp;z=12&amp;output=embed"
+              width="100%" height="220" style="border:0;display:block;" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing the Stevenage, Hertfordshire area"></iframe>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="bg-cream cta-band">
+    <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:1.4rem;">
+      <div class="divider"><svg viewBox="0 0 24 24"><use href="#i-sprig"/></svg></div>
+      <p class="prose" style="text-align:center;color:var(--ink-muted);max-width:52ch;">
+        Taking the first step can feel difficult, but you don't have to do it alone. If you'd like to find out
+        whether counselling feels right for you, I'd be delighted to offer a free 15-minute consultation.
+      </p>
+      <a href="#contact" class="btn btn-primary">Book Your Free Consultation</a>
     </div>
   </section>
 
@@ -827,23 +870,24 @@
         </ul>
       </div>
       <div>
-        <h4>Legal</h4>
+        <h4>Contact</h4>
         <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Use</a></li>
+          <li><a href="mailto:hello@christinemorriscounselling.co.uk">hello@christinemorriscounselling.co.uk</a></li>
+          <li><a href="tel:+447933393569">07933 393569</a></li>
+          <li><span>Stevenage, Hertfordshire</span></li>
         </ul>
       </div>
       <div>
         <h4>Credentials</h4>
         <div class="badge-row">
-          <span class="badge"><svg class="icon"><use href="#i-shield"/></svg>MBACP</span>
-          <span class="badge"><svg class="icon"><use href="#i-check"/></svg>Counselling Directory</span>
+          <span class="badge"><svg class="icon"><use href="#i-shield"/></svg>BACP Member</span>
+          <span class="badge"><svg class="icon"><use href="#i-check"/></svg>GDPR &amp; ICO Registered</span>
         </div>
       </div>
     </div>
     <div class="foot-base">
       <span>© 2026 Christine Morris Counselling. All rights reserved.</span>
-      <span>Site design preview — draft copy, pending final photography</span>
+      <span><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Use</a></span>
     </div>
   </div>
 </footer>
