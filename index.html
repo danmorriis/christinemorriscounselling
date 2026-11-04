@@ -1346,6 +1346,7 @@
   if(form){
     var statusEl = document.getElementById('formStatus');
     var submitBtn = document.getElementById('enquirySubmit');
+    var FAILED_MSG = 'Sorry, that didn’t work. Please use the ‘Email Me’ or ‘WhatsApp Me’ buttons instead…';
 
     function say(msg, ok){
       statusEl.textContent = msg;
@@ -1376,11 +1377,11 @@
           form.reset();
           say('Thank you for getting in touch. Christine will reply as soon as she can.', true);
         } else {
-          say('Sorry, something went wrong. Please email or WhatsApp instead.', false);
+          say(FAILED_MSG, false);
         }
       })
       .catch(function(){
-        say('Sorry, something went wrong. Please email or WhatsApp instead.', false);
+        say(FAILED_MSG, false);
       })
       .finally(function(){
         submitBtn.disabled = false;
