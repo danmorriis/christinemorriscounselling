@@ -114,6 +114,12 @@
      so only its emblem is shown here, windowed out of the full artwork. */
   .logo-mark{width:46px;height:46px;overflow:hidden;flex:none;}
   .logo-mark img{width:78px;height:78px;max-width:none;margin:-1px 0 0 -16px;}
+  .footer-logo{display:inline-block;margin-bottom:1rem;}
+  .footer-logo img{width:150px;border-radius:.8rem;}
+  .footer-badge{width:170px;background:var(--white);border-radius:.5rem;padding:.5rem;}
+  .accred-row{display:flex;justify-content:center;align-items:center;gap:2.5rem;flex-wrap:wrap;margin-top:1.4rem;}
+  .accred-row img{height:72px;width:auto;}
+  .accred-row img:last-child{height:96px;}
   .logo-text{display:flex;flex-direction:column;line-height:1.1;}
   .logo-text .name{font-family:var(--font-heading);font-size:1.22rem;color:var(--olive);}
   .logo-text .sub{font-family:var(--font-body);font-size:.58rem;letter-spacing:.26em;color:var(--sage-dark);font-weight:700;}
@@ -187,8 +193,8 @@
   .art > svg,.art > img{width:100%;height:100%;display:block;object-fit:cover;}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;padding:0;overflow:hidden;background:var(--olive);}
-  .hero-art img{width:100%;height:clamp(440px,60vw,620px);display:block;object-fit:cover;opacity:.6;}
+  .hero{position:relative;padding:0;overflow:hidden;}
+  .hero-art svg{width:100%;height:clamp(440px,60vw,620px);display:block;}
   .hero-copy{
     position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;color:var(--white);padding:2rem;gap:1.2rem;
@@ -263,11 +269,7 @@
   .page-banner{position:relative;color:var(--white);min-height:300px;display:flex;align-items:flex-end;overflow:hidden;}
   .page-banner-bg{position:absolute;inset:0;background:var(--olive);}
   .page-banner-bg svg,.page-banner-bg img{width:100%;height:100%;object-fit:cover;object-position:center 28%;}
-  /* Scrim so the heading stays legible wherever the photograph happens to be light */
   .page-banner-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,67,56,.25) 0%,rgba(46,67,56,.78) 100%);}
-
-  .art-pair{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-  .art-pair .art{aspect-ratio:3/4;min-height:0;}
   .page-banner .wrap{position:relative;padding-block:3rem;display:flex;flex-direction:column;gap:.6rem;}
   .page-banner h1{color:var(--white);font-size:clamp(2rem,4.4vw,3.1rem);}
 
@@ -310,8 +312,14 @@
   .issue-list .icon{width:15px;height:15px;color:var(--sage);flex:none;margin-top:.42rem;}
 
   /* ---------- what to expect ---------- */
-  .mantra-img{display:flex;justify-content:center;margin-bottom:2.8rem;}
-  .mantra-img img{width:min(260px,70%);border-radius:1.2rem;box-shadow:var(--shadow-soft);}
+  .mantra{
+    display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;
+    font-family:var(--font-heading);font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--olive);
+    letter-spacing:.08em;margin-bottom:2.5rem;
+  }
+  .mantra span{display:inline-flex;align-items:center;gap:1rem;}
+  .mantra span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .mantra span:last-child::after{display:none;}
 
   .step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
   @media (max-width:820px){.step-grid{grid-template-columns:repeat(2,1fr);}}
@@ -355,10 +363,6 @@
   .badge-light{background:var(--cream);border-color:var(--line);color:var(--olive);}
   .badge-light .icon{color:var(--sage);}
 
-  .accred-row{display:flex;justify-content:center;align-items:center;gap:2.5rem;flex-wrap:wrap;margin-top:1.4rem;}
-  .accred-row img{height:72px;width:auto;}
-  .accred-row img:last-child{height:96px;}
-
   /* ---------- contact ---------- */
   .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:start;}
   @media (max-width:820px){.contact-grid{grid-template-columns:1fr;}}
@@ -391,9 +395,9 @@
   @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
   @media (max-width:520px){.footer-grid{grid-template-columns:1fr;}}
   footer h4{font-family:var(--font-body);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
-  .footer-logo{display:inline-block;margin-bottom:1rem;}
-  .footer-logo img{width:150px;border-radius:.8rem;}
-  .footer-badge{width:170px;background:var(--white);border-radius:.5rem;padding:.5rem;}
+  footer .logo{margin-bottom:1rem;}
+  footer .logo-text .name{color:var(--white);}
+  footer .logo-text .sub{color:var(--eucalyptus);}
   footer p{color:rgba(221,230,216,.82);font-size:.91rem;max-width:34ch;}
   footer ul{display:flex;flex-direction:column;gap:.6rem;}
   footer li,footer a{font-size:.91rem;color:rgba(221,230,216,.82);}
@@ -477,8 +481,35 @@
 <div id="page-home" class="page">
 
   <div class="hero">
+    <span class="art-tag">Photo &middot; Woodland pathway, sunlight through trees</span>
     <div class="hero-art">
-      <img src="images/hero-woodland.jpg" alt="Sunlight falling through a woodland of tall trees">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Illustrated woodland pathway with sunlight through the trees">
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8FA287"/>
+            <stop offset="1" stop-color="#C7B189"/>
+          </linearGradient>
+          <linearGradient id="pathGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F8F5EF"/>
+            <stop offset="1" stop-color="#DDE6D8"/>
+          </linearGradient>
+          <radialGradient id="sunGlow" cx="50%" cy="22%" r="36%">
+            <stop offset="0" stop-color="#F8F0DC" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#F8F0DC" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1400" height="700" fill="url(#skyGrad)"/>
+        <rect width="1400" height="700" fill="url(#sunGlow)"/>
+        <path d="M-50 520 C 250 420 350 480 500 430 C 650 380 700 440 850 420 C 1050 390 1150 440 1450 500 L1450 700 L-50 700 Z" fill="#495542" opacity=".5"/>
+        <path d="M-50 590 C 300 510 400 560 560 510 C 720 460 780 530 950 510 C 1100 490 1200 540 1450 580 L1450 700 L-50 700 Z" fill="#3C4830" opacity=".72"/>
+        <path d="M640 700 C 600 560 660 480 700 400 C 740 320 700 250 665 180" stroke="url(#pathGrad)" stroke-width="130" fill="none" stroke-linecap="round" opacity=".9"/>
+        <path d="M640 700 C 600 560 660 480 700 400 C 740 320 700 250 665 180" stroke="#C7B189" stroke-width="2" fill="none" stroke-dasharray="4 10" opacity=".75"/>
+        <g opacity=".45" stroke="#F8F5EF" stroke-width="1.5" fill="none">
+          <path d="M300 280c10 30 30 40 60 35"/><path d="M1000 240c-12 28-34 36-62 30"/>
+          <path d="M220 400c14 24 36 28 60 18"/><path d="M1080 380c-16 22-38 24-60 12"/>
+        </g>
+        <rect width="1400" height="700" fill="#2E4338" opacity=".2"/>
+      </svg>
     </div>
     <div class="hero-copy">
       <h1>A Safe Place To <em>Be Yourself</em></h1>
@@ -514,7 +545,18 @@
     <div class="wrap two-col reverse reveal">
       <div class="art-col">
         <div class="art square">
-          <img src="images/seedlings.jpg" alt="Four seedlings growing in a row in soil">
+          <span class="art-tag">Photo &middot; Seedlings</span>
+          <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder seedlings image">
+            <rect width="400" height="400" fill="#DDE6D8"/>
+            <path d="M200 340v-90" stroke="#495542" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M200 265c-42-8-66-42-60-82 42 4 70 36 60 82Z" fill="#7D8F75"/>
+            <path d="M200 240c44-14 70-48 64-88-42 4-70 40-64 88Z" fill="#9FAF96"/>
+            <path d="M120 350v-50" stroke="#495542" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M120 312c-26-6-40-26-36-50 26 3 43 23 36 50Z" fill="#9FAF96"/>
+            <path d="M285 350v-44" stroke="#495542" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M285 316c26-6 40-26 36-50-26 3-43 23-36 50Z" fill="#7D8F75"/>
+            <rect y="348" width="400" height="52" fill="#AD8F63" opacity=".35"/>
+          </svg>
         </div>
       </div>
       <div class="stack">
@@ -582,7 +624,8 @@
           <div class="way-body"><h3>Face-to-Face Counselling</h3><p>In-person sessions in a calm, private room.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><img src="images/walk-and-talk.jpg" alt="A winding path beside a tree at sunset">
+          <div class="art wide"><span class="art-tag">Photo &middot; Tree &amp; pathway</span>
+            <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M160 180c-8-55 14-82 0-136" stroke="#DDE6D8" stroke-width="26" fill="none"/><path d="M70 180c0-40 8-70 18-96" stroke="#9FAF96" stroke-width="5" fill="none"/><circle cx="92" cy="60" r="30" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Walk &amp; Talk Therapy</h3><p>Counselling while enjoying the outdoors.</p></div>
         </div>
@@ -715,9 +758,17 @@
   <section class="bg-cream">
     <div class="wrap two-col reverse reveal">
       <div class="art-col">
-        <div class="art-pair">
-          <div class="art"><img src="images/creative-blob-tree.jpg" alt="Blob Tree illustration used to explore feelings"></div>
-          <div class="art"><img src="images/creative-emotion-cards.jpg" alt="Emotion flashcards showing a range of feelings"></div>
+        <div class="art square">
+          <span class="art-tag">Image &middot; Creative resources</span>
+          <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder creative resources image">
+            <rect width="400" height="400" fill="#DDE6D8"/>
+            <path d="M200 330V190" stroke="#495542" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M200 230c-50 0-80-30-80-60s30-55 80-55 80 25 80 55-30 60-80 60Z" fill="#9FAF96"/>
+            <circle cx="150" cy="150" r="13" fill="#C7B189"/>
+            <circle cx="210" cy="128" r="13" fill="#F8F5EF"/>
+            <circle cx="248" cy="172" r="13" fill="#7D8F75"/>
+            <circle cx="176" cy="196" r="13" fill="#AD8F63"/>
+          </svg>
         </div>
       </div>
       <div class="stack">
@@ -757,7 +808,14 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art wide">
-          <img src="images/stone-gateway.jpg" alt="An open wooden gate in a dry stone wall looking out over a valley">
+          <span class="art-tag">Photo &middot; Stone gateway</span>
+          <svg viewBox="0 0 400 225" role="img" aria-label="Placeholder stone gateway image">
+            <rect width="400" height="225" fill="#EEEAE2"/>
+            <path d="M150 225V120a50 50 0 0 1 100 0v105" fill="#DDE6D8" stroke="#9FAF96" stroke-width="4"/>
+            <rect x="120" y="100" width="30" height="125" fill="#C9C2B4"/>
+            <rect x="250" y="100" width="30" height="125" fill="#C9C2B4"/>
+            <path d="M200 225v-70" stroke="#C7B189" stroke-width="3" stroke-dasharray="5 7"/>
+          </svg>
         </div>
       </div>
       <div class="stack">
@@ -917,7 +975,14 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art square">
-          <img src="images/creative-art-materials.jpg" alt="Hands painting with watercolours">
+          <span class="art-tag">Image &middot; Creative resources</span>
+          <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder creative resources image">
+            <rect width="400" height="400" fill="#DDE6D8"/>
+            <circle cx="150" cy="150" r="46" fill="#9FAF96"/>
+            <circle cx="250" cy="180" r="34" fill="#C7B189"/>
+            <circle cx="180" cy="252" r="40" fill="#7D8F75"/>
+            <circle cx="262" cy="276" r="24" fill="#F8F5EF"/>
+          </svg>
         </div>
       </div>
       <div class="stack">
@@ -960,7 +1025,8 @@
           <div class="way-body"><h3>Face-to-Face Counselling</h3><p>In-person sessions in a calm, private room.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><img src="images/walk-and-talk.jpg" alt="A winding path beside a tree at sunset">
+          <div class="art wide"><span class="art-tag">Photo &middot; Tree &amp; pathway</span>
+            <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M160 180c-8-55 14-82 0-136" stroke="#DDE6D8" stroke-width="26" fill="none"/><path d="M70 180c0-40 8-70 18-96" stroke="#9FAF96" stroke-width="5" fill="none"/><circle cx="92" cy="60" r="30" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Walk &amp; Talk Therapy</h3><p>Counselling while enjoying the outdoors.</p></div>
         </div>
@@ -975,8 +1041,8 @@
         <span class="eyebrow">What To Expect</span>
         <h2>Getting started</h2>
       </div>
-      <div class="mantra-img">
-        <img src="images/heal-explore-grow-thrive.jpg" alt="Four stacked pebbles reading Heal, Explore, Grow, Thrive">
+      <div class="mantra">
+        <span>Heal</span><span>Explore</span><span>Grow</span><span>Thrive</span>
       </div>
       <div class="step-grid">
         <div class="step-card"><span class="num">01</span><h3>Free 15-Minute Consultation</h3></div>
