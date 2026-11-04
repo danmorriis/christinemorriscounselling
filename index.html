@@ -116,13 +116,16 @@
   .logo-mark img{width:78px;height:78px;max-width:none;margin:-1px 0 0 -16px;}
   .footer-logo{display:inline-block;margin-bottom:1rem;}
   .footer-logo img{width:150px;border-radius:.8rem;}
-  .footer-badge{width:170px;background:var(--white);border-radius:.5rem;padding:.5rem;}
+  .footer-badges{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+  .footer-badges img{height:50px;width:auto;background:var(--white);border-radius:.5rem;padding:.35rem;}
   .accred-row{display:flex;justify-content:center;align-items:center;gap:2.5rem;flex-wrap:wrap;margin-top:1.4rem;}
   .accred-row img{height:72px;width:auto;}
   .accred-row img:last-child{height:96px;}
   .logo-text{display:flex;flex-direction:column;line-height:1.1;}
   .logo-text .name{font-family:var(--font-heading);font-size:1.22rem;color:var(--olive);}
-  .logo-text .sub{font-family:var(--font-body);font-size:.58rem;letter-spacing:.26em;color:var(--sage-dark);font-weight:700;}
+  /* Letter-spacing is fitted at runtime so the sub-line spans exactly the name above it;
+     a fixed value drifts because Cambria/Aptos are present on some devices and not others. */
+  .logo-text .sub{font-family:var(--font-body);font-size:.58rem;letter-spacing:.26em;color:var(--sage-dark);font-weight:700;white-space:nowrap;}
 
   .nav-links{display:flex;gap:1.5rem;}
   .nav-links a{
@@ -1227,7 +1230,10 @@
       </div>
       <div>
         <h4>Credentials</h4>
-        <img class="footer-badge" src="images/badge-bacp.png" alt="BACP Registered Member 402890 MBACP">
+        <div class="footer-badges">
+          <img src="images/badge-bacp.png" alt="BACP Registered Member 402890 MBACP">
+          <img src="images/badge-online-telephone.png" alt="Online and Telephone Counselling Certified Counsellor">
+        </div>
         <div class="badge-row" style="margin-top:1rem;">
           <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>GDPR &amp; ICO Registered</span>
         </div>
@@ -1378,6 +1384,29 @@
       });
     });
   }
+
+  // Match the sub-line's width to the name above it. CSS letter-spacing also adds a
+  // trailing gap after the final letter, which is cancelled with a negative margin.
+  function fitWordmark(){
+    document.querySelectorAll('.logo-text').forEach(function(box){
+      var name = box.querySelector('.name');
+      var sub = box.querySelector('.sub');
+      if(!name || !sub) return;
+      var chars = sub.textContent.trim().length;
+      if(chars < 2) return;
+      sub.style.letterSpacing = '0px';
+      sub.style.marginRight = '0px';
+      var target = name.getBoundingClientRect().width;
+      var natural = sub.getBoundingClientRect().width;
+      if(!target || !natural) return;
+      var spacing = (target - natural) / (chars - 1);
+      sub.style.letterSpacing = spacing + 'px';
+      sub.style.marginRight = (-spacing) + 'px';
+    });
+  }
+  fitWordmark();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+  window.addEventListener('resize', fitWordmark);
 
   showPage((location.hash || '#home').replace('#',''));
 })();
