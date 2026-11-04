@@ -246,9 +246,24 @@
   .longform p{color:var(--ink-muted);}
 
   /* ---------- testimonials ---------- */
-  .tslider{max-width:760px;margin:0 auto;position:relative;}
-  .tslide{display:none;text-align:center;}
+  .tslider{max-width:860px;margin:0 auto;position:relative;touch-action:pan-y;}
+  .tslide{display:none;text-align:center;padding-inline:clamp(1rem,8vw,5rem);}
   .tslide.active{display:block;}
+
+  /* Click zones flanking the quote; on touch screens the swipe handler covers this instead */
+  .tnav{
+    position:absolute;top:0;bottom:3.5rem;width:clamp(2.5rem,8vw,5rem);
+    display:flex;align-items:center;justify-content:center;
+    background:none;border:0;padding:0;cursor:pointer;color:var(--sage);
+    opacity:.45;transition:opacity .2s ease;
+  }
+  .tnav:hover{opacity:1;}
+  .tnav:focus-visible{outline:2px solid var(--gold-dark);outline-offset:2px;opacity:1;}
+  .tnav svg{width:26px;height:26px;}
+  .tprev{left:0;}
+  .tnext{right:0;}
+  .tnext svg{transform:rotate(180deg);}
+  @media (hover:none){.tnav{display:none;}}
   .tslide blockquote{
     margin:0;font-family:var(--font-heading);font-style:italic;
     font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.6;color:var(--olive);
@@ -431,6 +446,7 @@
     <symbol id="i-pin" viewBox="0 0 24 24"><path class="icon" d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle class="icon" cx="12" cy="9.5" r="2.4"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle class="icon" cx="12" cy="12" r="9"/><path class="icon" d="M12 7v5l3.5 2"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path class="icon" d="M4 12.5 9 18 20 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path class="icon" d="m15 5-7 7 7 7"/></symbol>
     <symbol id="i-whatsapp" viewBox="0 0 24 24"><path class="icon" d="M7 17.5 4 20l2.4-3.3A8 8 0 1 1 12 20a8 8 0 0 1-5-1.8Z"/><path class="icon" d="M9 9.2c0 3.6 2.2 5.8 5.8 5.8.5-.9.4-1.5 0-1.8l-1.6-.9-1 1.1c-1-.5-1.8-1.3-2.3-2.3l1.1-1-.9-1.6c-.3-.4-.9-.5-1.8 0Z"/></symbol>
   </defs>
 </svg>
@@ -679,6 +695,8 @@
           <blockquote>I am extremely grateful to have had you as my counsellor. It was wonderful to have someone who
           truly listened to me.</blockquote>
         </div>
+        <button class="tnav tprev" id="tprev" type="button" aria-label="Previous testimonial"><svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
+        <button class="tnav tnext" id="tnext" type="button" aria-label="Next testimonial"><svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
         <div class="tdots" id="tdots" role="tablist" aria-label="Choose testimonial"></div>
       </div>
     </div>
@@ -1315,6 +1333,8 @@
       dots[current].setAttribute('aria-selected','true');
     }
     function next(){ go((current + 1) % slides.length); }
+    function prev(){ go((current - 1 + slides.length) % slides.length); }
+    function step(fn){ fn(); restart(); }
     function restart(){
       if(reduce) return;
       clearInterval(timer);
@@ -1323,10 +1343,32 @@
     restart();
 
     var slider = document.getElementById('tslider');
+    document.getElementById('tprev').addEventListener('click', function(){ step(prev); });
+    document.getElementById('tnext').addEventListener('click', function(){ step(next); });
+
     slider.addEventListener('mouseenter', function(){ clearInterval(timer); });
     slider.addEventListener('mouseleave', restart);
     slider.addEventListener('focusin', function(){ clearInterval(timer); });
     slider.addEventListener('focusout', restart);
+
+    // Swipe. A gesture only counts when it travels further across than down,
+    // so a vertical page scroll started on the quote is not read as a swipe.
+    var startX = 0, startY = 0, tracking = false;
+    slider.addEventListener('touchstart', function(e){
+      if(e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+      clearInterval(timer);
+    }, {passive:true});
+    slider.addEventListener('touchend', function(e){
+      if(!tracking) return;
+      tracking = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - startX, dy = t.clientY - startY;
+      if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) (dx < 0 ? next : prev)();
+      restart();
+    }, {passive:true});
   }
 
   // Enquiry form
