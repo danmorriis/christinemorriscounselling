@@ -364,7 +364,10 @@
   }
   .field input:focus,.field textarea:focus{outline:2px solid var(--sage);outline-offset:1px;}
   .field textarea{resize:vertical;min-height:130px;}
-  .form-note{font-size:.8rem;color:var(--ink-muted);margin-top:.8rem;font-style:italic;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .form-status{font-size:.9rem;margin-top:.9rem;padding:.8rem 1rem;border-radius:.7rem;}
+  .form-status.ok{background:var(--eucalyptus);color:var(--olive);}
+  .form-status.err{background:#F6E7E3;color:#8C3B28;}
 
   .contact-info{display:flex;flex-direction:column;gap:1.3rem;margin-top:2.2rem;}
   .info-row{display:flex;gap:1rem;align-items:flex-start;}
@@ -1136,17 +1139,22 @@
 
       <div class="contact-grid">
         <div>
-          <form onsubmit="return false;">
-            <div class="field"><label for="c-name">Name</label><input id="c-name" type="text" placeholder="Your name" required></div>
-            <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="you@example.com" required></div>
-            <div class="field"><label for="c-phone">Telephone</label><input id="c-phone" type="tel" placeholder="Your number"></div>
-            <div class="field"><label for="c-msg">How Can I Help?</label><textarea id="c-msg" placeholder="A little about what's brought you here..."></textarea></div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
-            <p class="form-note">Form not yet connected — messages are not sent. Use the email or WhatsApp buttons below in the meantime.</p>
+          <form id="enquiryForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New Client Enquiry">
+            <input type="hidden" name="from_name" value="Christine Morris Counselling website">
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+            <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" placeholder="Your name" required></div>
+            <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" placeholder="you@example.com" required></div>
+            <div class="field"><label for="c-phone">Telephone</label><input id="c-phone" name="number" type="tel" placeholder="Your number"></div>
+            <div class="field"><label for="c-msg">How Can I Help?</label><textarea id="c-msg" name="How can I help?" placeholder="A little about what's brought you here..." required></textarea></div>
+            <button type="submit" class="btn btn-primary" id="enquirySubmit" style="width:100%;justify-content:center;">Send Message</button>
+            <p class="form-status" id="formStatus" role="status" hidden></p>
           </form>
 
           <div class="quick-actions">
-            <a class="btn btn-ghost" href="mailto:hello@christinemorriscounselling.co.uk?subject=Enquiry%20from%20website&amp;body=Hi%20Christine%2C%0A%0AI%27d%20like%20to%20find%20out%20more%20about%20counselling%20sessions.">
+            <a class="btn btn-ghost" href="mailto:hello@christinemorriscounselling.co.uk?subject=Enquiry%20from%20website&amp;body=Hi%20Christine%2C%0A%0AI%27d%20like%20to%20find%20out%20more%20about%20counselling%20sessions.%0A%0A%3Cplease%20write%20about%20what%20I%20can%20help%20with%3E">
               <svg class="icon" style="width:16px;height:16px;" aria-hidden="true"><use href="#i-mail"/></svg> Email Me
             </a>
             <a class="btn btn-ghost" href="https://wa.me/447932393569?text=Hi%20Christine%2C%20I%27d%20like%20to%20find%20out%20more%20about%20counselling%20sessions." target="_blank" rel="noopener">
@@ -1331,6 +1339,54 @@
     slider.addEventListener('mouseleave', restart);
     slider.addEventListener('focusin', function(){ clearInterval(timer); });
     slider.addEventListener('focusout', restart);
+  }
+
+  // Enquiry form
+  var form = document.getElementById('enquiryForm');
+  if(form){
+    var statusEl = document.getElementById('formStatus');
+    var submitBtn = document.getElementById('enquirySubmit');
+
+    function say(msg, ok){
+      statusEl.textContent = msg;
+      statusEl.className = 'form-status ' + (ok ? 'ok' : 'err');
+      statusEl.hidden = false;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = Object.fromEntries(new FormData(form));
+
+      if(data.access_key === 'WEB3FORMS_ACCESS_KEY'){
+        say('The form isn’t live yet. Please use the Email or WhatsApp buttons below.', false);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json', Accept:'application/json'},
+        body: JSON.stringify(data)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if(res.success){
+          form.reset();
+          say('Thank you for getting in touch. Christine will reply as soon as she can.', true);
+        } else {
+          say('Sorry, something went wrong. Please email or WhatsApp instead.', false);
+        }
+      })
+      .catch(function(){
+        say('Sorry, something went wrong. Please email or WhatsApp instead.', false);
+      })
+      .finally(function(){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      });
+    });
   }
 
   showPage((location.hash || '#home').replace('#',''));
