@@ -187,12 +187,6 @@
   .art.square{aspect-ratio:1/1;min-height:0;}
   .art.portrait{aspect-ratio:4/5;min-height:0;}
   .art.wide{aspect-ratio:16/9;min-height:0;}
-  .art-tag{
-    position:absolute;top:.85rem;left:.85rem;z-index:2;
-    font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    background:rgba(255,255,255,.85);color:var(--sage-dark);
-    padding:.3rem .6rem;border-radius:999px;
-  }
   .art > svg,.art > img{width:100%;height:100%;display:block;object-fit:cover;}
 
   /* ---------- hero ---------- */
@@ -270,9 +264,8 @@
 
   /* ---------- page banner ---------- */
   .page-banner{position:relative;color:var(--white);min-height:300px;display:flex;align-items:flex-end;overflow:hidden;}
-  .page-banner-bg{position:absolute;inset:0;background:var(--olive);}
-  .page-banner-bg svg,.page-banner-bg img{width:100%;height:100%;object-fit:cover;object-position:center 28%;}
-  .page-banner-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,67,56,.25) 0%,rgba(46,67,56,.78) 100%);}
+  .page-banner-bg{position:absolute;inset:0;}
+  .page-banner-bg svg{width:100%;height:100%;}
   .page-banner .wrap{position:relative;padding-block:3rem;display:flex;flex-direction:column;gap:.6rem;}
   .page-banner h1{color:var(--white);font-size:clamp(2rem,4.4vw,3.1rem);}
 
@@ -484,7 +477,6 @@
 <div id="page-home" class="page">
 
   <div class="hero">
-    <span class="art-tag">Photo &middot; Woodland pathway, sunlight through trees</span>
     <div class="hero-art">
       <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Illustrated woodland pathway with sunlight through the trees">
         <defs>
@@ -548,7 +540,6 @@
     <div class="wrap two-col reverse reveal">
       <div class="art-col">
         <div class="art square">
-          <span class="art-tag">Photo &middot; Seedlings</span>
           <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder seedlings image">
             <rect width="400" height="400" fill="#DDE6D8"/>
             <path d="M200 340v-90" stroke="#495542" stroke-width="6" fill="none" stroke-linecap="round"/>
@@ -609,25 +600,25 @@
       </div>
       <div class="way-grid">
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#DDE6D8"/><rect x="100" y="55" width="120" height="74" rx="7" fill="none" stroke="#495542" stroke-width="4"/><rect x="128" y="138" width="64" height="7" rx="3.5" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Online Counselling</h3><p>Secure video sessions from wherever is comfortable.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M128 48h17l10 30-13 10a75 75 0 0 0 38 38l10-13 30 10v17a13 13 0 0 1-13 13c-53 0-92-39-92-92a13 13 0 0 1 13-13Z" fill="none" stroke="#495542" stroke-width="4"/></svg>
           </div>
           <div class="way-body"><h3>Telephone Counselling</h3><p>No screen needed, just a quiet space and a voice call.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#DDE6D8"/><circle cx="130" cy="78" r="24" fill="#9FAF96"/><circle cx="192" cy="85" r="19" fill="#C7D9C3"/><path d="M92 165c0-33 22-55 44-55M152 165c0-28 18-46 40-46" fill="none" stroke="#495542" stroke-width="3"/></svg>
           </div>
           <div class="way-body"><h3>Face-to-Face Counselling</h3><p>In-person sessions in a calm, private room.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo &middot; Tree &amp; pathway</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M160 180c-8-55 14-82 0-136" stroke="#DDE6D8" stroke-width="26" fill="none"/><path d="M70 180c0-40 8-70 18-96" stroke="#9FAF96" stroke-width="5" fill="none"/><circle cx="92" cy="60" r="30" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Walk &amp; Talk Therapy</h3><p>Counselling while enjoying the outdoors.</p></div>
@@ -710,7 +701,14 @@
 
   <div class="page-banner">
     <div class="page-banner-bg">
-      <img src="images/christine.jpg" alt="Christine Morris, counsellor">
+      <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Decorative leaf banner">
+        <rect width="1400" height="500" fill="#3D5A4C"/>
+        <path d="M700 520c-20-120 10-180-30-260-30-60-20-110 10-150" stroke="#DDE6D8" stroke-width="4" fill="none" opacity=".6"/>
+        <path d="M680 280c-60-10-96-54-90-108 56 4 96 50 90 108Z" fill="#2E4338" opacity=".9"/>
+        <path d="M720 190c58-8 98-48 94-100-56 2-98 46-94 100Z" fill="#2E4338" opacity=".7"/>
+        <circle cx="200" cy="120" r="2.5" fill="#C7B189"/><circle cx="1180" cy="90" r="2.5" fill="#C7B189"/>
+        <circle cx="1050" cy="300" r="2.5" fill="#C7B189"/>
+      </svg>
     </div>
     <div class="wrap">
       <span class="eyebrow" style="color:var(--gold);">About Me</span>
@@ -762,7 +760,6 @@
     <div class="wrap two-col reverse reveal">
       <div class="art-col">
         <div class="art square">
-          <span class="art-tag">Image &middot; Creative resources</span>
           <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder creative resources image">
             <rect width="400" height="400" fill="#DDE6D8"/>
             <path d="M200 330V190" stroke="#495542" stroke-width="8" fill="none" stroke-linecap="round"/>
@@ -811,7 +808,6 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art wide">
-          <span class="art-tag">Photo &middot; Stone gateway</span>
           <svg viewBox="0 0 400 225" role="img" aria-label="Placeholder stone gateway image">
             <rect width="400" height="225" fill="#EEEAE2"/>
             <path d="M150 225V120a50 50 0 0 1 100 0v105" fill="#DDE6D8" stroke="#9FAF96" stroke-width="4"/>
@@ -978,7 +974,6 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art square">
-          <span class="art-tag">Image &middot; Creative resources</span>
           <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder creative resources image">
             <rect width="400" height="400" fill="#DDE6D8"/>
             <circle cx="150" cy="150" r="46" fill="#9FAF96"/>
@@ -1010,25 +1005,25 @@
       </div>
       <div class="way-grid">
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#DDE6D8"/><rect x="100" y="55" width="120" height="74" rx="7" fill="none" stroke="#495542" stroke-width="4"/><rect x="128" y="138" width="64" height="7" rx="3.5" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Online Counselling</h3><p>Secure video sessions from wherever is comfortable.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M128 48h17l10 30-13 10a75 75 0 0 0 38 38l10-13 30 10v17a13 13 0 0 1-13 13c-53 0-92-39-92-92a13 13 0 0 1 13-13Z" fill="none" stroke="#495542" stroke-width="4"/></svg>
           </div>
           <div class="way-body"><h3>Telephone Counselling</h3><p>No screen needed, just a quiet space and a voice call.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#DDE6D8"/><circle cx="130" cy="78" r="24" fill="#9FAF96"/><circle cx="192" cy="85" r="19" fill="#C7D9C3"/><path d="M92 165c0-33 22-55 44-55M152 165c0-28 18-46 40-46" fill="none" stroke="#495542" stroke-width="3"/></svg>
           </div>
           <div class="way-body"><h3>Face-to-Face Counselling</h3><p>In-person sessions in a calm, private room.</p></div>
         </div>
         <div class="way-card">
-          <div class="art wide"><span class="art-tag">Photo &middot; Tree &amp; pathway</span>
+          <div class="art wide">
             <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#EEEAE2"/><path d="M160 180c-8-55 14-82 0-136" stroke="#DDE6D8" stroke-width="26" fill="none"/><path d="M70 180c0-40 8-70 18-96" stroke="#9FAF96" stroke-width="5" fill="none"/><circle cx="92" cy="60" r="30" fill="#7D8F75"/></svg>
           </div>
           <div class="way-body"><h3>Walk &amp; Talk Therapy</h3><p>Counselling while enjoying the outdoors.</p></div>
@@ -1167,7 +1162,6 @@
 
         <div>
           <div class="art square">
-            <span class="art-tag">Photo &middot; Calming nature</span>
             <svg viewBox="0 0 400 400" role="img" aria-label="Placeholder calming nature image">
               <rect width="400" height="400" fill="#EEEAE2"/>
               <circle cx="200" cy="200" r="92" fill="none" stroke="#7D8F75" stroke-width="3"/>
@@ -1175,7 +1169,6 @@
             </svg>
           </div>
           <div class="map">
-            <span class="art-tag">Counselling room location to be added when finalised</span>
             <iframe
               src="https://maps.google.com/maps?q=Stevenage%2C+Hertfordshire&amp;z=12&amp;output=embed"
               width="100%" height="300" style="border:0;display:block;" loading="lazy"
