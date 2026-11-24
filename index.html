@@ -282,7 +282,8 @@
   /* ---------- page banner ---------- */
   .page-banner{position:relative;color:var(--white);min-height:300px;display:flex;align-items:flex-end;overflow:hidden;}
   .page-banner-bg{position:absolute;inset:0;}
-  .page-banner-bg svg{width:100%;height:100%;}
+  .page-banner-bg img{width:100%;height:100%;display:block;object-fit:cover;}
+  .page-banner-bg::after{content:"";position:absolute;inset:0;background:rgba(46,67,56,.5);}
   .page-banner .wrap{position:relative;padding-block:3rem;display:flex;flex-direction:column;gap:.6rem;}
   .page-banner h1{color:var(--white);font-size:clamp(2rem,4.4vw,3.1rem);}
 
@@ -661,14 +662,7 @@
 
   <div class="page-banner">
     <div class="page-banner-bg">
-      <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Decorative leaf banner">
-        <rect width="1400" height="500" fill="#3D5A4C"/>
-        <path d="M700 520c-20-120 10-180-30-260-30-60-20-110 10-150" stroke="#DDE6D8" stroke-width="4" fill="none" opacity=".6"/>
-        <path d="M680 280c-60-10-96-54-90-108 56 4 96 50 90 108Z" fill="#2E4338" opacity=".9"/>
-        <path d="M720 190c58-8 98-48 94-100-56 2-98 46-94 100Z" fill="#2E4338" opacity=".7"/>
-        <circle cx="200" cy="120" r="2.5" fill="#C7B189"/><circle cx="1180" cy="90" r="2.5" fill="#C7B189"/>
-        <circle cx="1050" cy="300" r="2.5" fill="#C7B189"/>
-      </svg>
+      <img src="images/about-banner.jpg" alt="" role="presentation">
     </div>
     <div class="wrap">
       <span class="eyebrow" style="color:var(--gold);">About Me</span>
@@ -695,7 +689,7 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art portrait">
-          <img src="images/christine.jpg" alt="Christine Morris, counsellor">
+          <img src="images/about-profile.jpg" alt="Christine Morris, counsellor" loading="lazy">
         </div>
       </div>
       <div class="stack">
@@ -744,13 +738,7 @@
     <div class="wrap two-col reveal">
       <div class="art-col">
         <div class="art wide">
-          <svg viewBox="0 0 400 225" role="img" aria-label="Placeholder stone gateway image">
-            <rect width="400" height="225" fill="#EEEAE2"/>
-            <path d="M150 225V120a50 50 0 0 1 100 0v105" fill="#DDE6D8" stroke="#9FAF96" stroke-width="4"/>
-            <rect x="120" y="100" width="30" height="125" fill="#C9C2B4"/>
-            <rect x="250" y="100" width="30" height="125" fill="#C9C2B4"/>
-            <path d="M200 225v-70" stroke="#C7B189" stroke-width="3" stroke-dasharray="5 7"/>
-          </svg>
+          <img src="images/about-first-step.jpg" alt="A quiet country path leading to a wooden gate and open hills" loading="lazy">
         </div>
       </div>
       <div class="stack">
