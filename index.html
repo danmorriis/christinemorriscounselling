@@ -194,7 +194,9 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;padding:0;overflow:hidden;}
-  .hero-art svg{width:100%;height:clamp(440px,60vw,620px);display:block;}
+  .hero-art{position:relative;}
+  .hero-art img{width:100%;height:clamp(440px,60vw,620px);display:block;object-fit:cover;object-position:center 60%;}
+  .hero-art::after{content:"";position:absolute;inset:0;background:rgba(46,67,56,.42);}
   .hero-copy{
     position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;color:var(--white);padding:2rem;gap:1.2rem;
@@ -523,33 +525,7 @@
 
   <div class="hero">
     <div class="hero-art">
-      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Illustrated woodland pathway with sunlight through the trees">
-        <defs>
-          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#8FA287"/>
-            <stop offset="1" stop-color="#C7B189"/>
-          </linearGradient>
-          <linearGradient id="pathGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#F8F5EF"/>
-            <stop offset="1" stop-color="#DDE6D8"/>
-          </linearGradient>
-          <radialGradient id="sunGlow" cx="50%" cy="22%" r="36%">
-            <stop offset="0" stop-color="#F8F0DC" stop-opacity=".85"/>
-            <stop offset="1" stop-color="#F8F0DC" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="1400" height="700" fill="url(#skyGrad)"/>
-        <rect width="1400" height="700" fill="url(#sunGlow)"/>
-        <path d="M-50 520 C 250 420 350 480 500 430 C 650 380 700 440 850 420 C 1050 390 1150 440 1450 500 L1450 700 L-50 700 Z" fill="#495542" opacity=".5"/>
-        <path d="M-50 590 C 300 510 400 560 560 510 C 720 460 780 530 950 510 C 1100 490 1200 540 1450 580 L1450 700 L-50 700 Z" fill="#3C4830" opacity=".72"/>
-        <path d="M640 700 C 600 560 660 480 700 400 C 740 320 700 250 665 180" stroke="url(#pathGrad)" stroke-width="130" fill="none" stroke-linecap="round" opacity=".9"/>
-        <path d="M640 700 C 600 560 660 480 700 400 C 740 320 700 250 665 180" stroke="#C7B189" stroke-width="2" fill="none" stroke-dasharray="4 10" opacity=".75"/>
-        <g opacity=".45" stroke="#F8F5EF" stroke-width="1.5" fill="none">
-          <path d="M300 280c10 30 30 40 60 35"/><path d="M1000 240c-12 28-34 36-62 30"/>
-          <path d="M220 400c14 24 36 28 60 18"/><path d="M1080 380c-16 22-38 24-60 12"/>
-        </g>
-        <rect width="1400" height="700" fill="#2E4338" opacity=".2"/>
-      </svg>
+      <img src="images/home-hero.jpg" alt="A misty country lane lit by early sunlight beneath overhanging trees">
     </div>
     <div class="hero-copy">
       <h1>A Safe Place To <em>Be Yourself</em></h1>
@@ -563,7 +539,7 @@
     <div class="wrap two-col reverse reveal">
       <div class="art-col">
         <div class="art square">
-          <img src="images/christine.jpg" alt="Christine Morris, counsellor">
+          <img src="images/home-profile.jpg" alt="Christine Morris, counsellor" loading="lazy" style="object-position:50% 25%;">
         </div>
         <ul class="art-caption">
           <li>MBACP Registered</li>
