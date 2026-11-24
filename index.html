@@ -312,6 +312,16 @@
   .service-block + .service-block{margin-top:1.6rem;}
   .service-head{display:flex;align-items:center;gap:1rem;margin-bottom:.4rem;}
   .service-head h2{font-size:1.5rem;}
+  .affirming-head{margin:3.2rem auto 1.8rem;gap:.7rem;}
+  .affirming-head p{font-style:italic;color:var(--ink-muted);}
+  .crisis{background:var(--gold);color:var(--ink);padding-block:clamp(2.5rem,5vw,3.5rem);}
+  .crisis .wrap{max-width:720px;text-align:center;}
+  .crisis h2{font-size:clamp(1.5rem,2.6vw,2rem);color:var(--ink);margin-bottom:.8rem;}
+  .crisis p{font-weight:600;}
+  .crisis ul{list-style:none;margin:1rem 0 0;padding:0;display:inline-flex;flex-direction:column;gap:.4rem;text-align:left;}
+  .crisis li{position:relative;padding-left:1.3rem;font-weight:700;}
+  .crisis li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:.5rem;border-radius:50%;background:var(--ink);}
+
   .service-intro{font-size:.9rem;color:var(--ink-muted);font-weight:600;margin-bottom:1.1rem;}
   .issue-list{columns:3;column-gap:2rem;}
   @media (max-width:860px){.issue-list{columns:2;}}
@@ -942,6 +952,11 @@
         </ul>
       </div>
 
+      <div class="section-head affirming-head">
+        <h2>Neurodivergent-Affirming Practice</h2>
+        <p>I recognise and respect different ways of thinking, communicating and experiencing the world. Sessions can be adapted to meet your individual needs and preferences, creating a space where you can be yourself without judgement or expectation.</p>
+      </div>
+
       <div class="service-block">
         <div class="service-head">
           <span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;" aria-hidden="true"><use href="#i-infinity"/></svg></span>
@@ -1002,7 +1017,7 @@
     <div class="wrap reveal">
       <div class="section-head">
         <span class="eyebrow">Therapy Options</span>
-        <h2>However works best for you</h2>
+        <h2>Whatever works best for you</h2>
       </div>
       <div class="way-grid">
         <div class="way-card">
@@ -1049,6 +1064,20 @@
         <div class="step-card"><span class="num">03</span><h3>Weekly 50-Minute Sessions</h3></div>
         <div class="step-card"><span class="num">04</span><h3>Regular Reviews Every 4&ndash;6 Weeks</h3></div>
       </div>
+    </div>
+  </section>
+
+  <!-- Crisis support -->
+  <section class="crisis" aria-labelledby="crisis-heading">
+    <div class="wrap reveal">
+      <h2 id="crisis-heading">Whilst I am here to support you</h2>
+      <p>If you are in a moment of crisis and need urgent support, please contact:</p>
+      <ul>
+        <li>NHS 111</li>
+        <li>Your GP</li>
+        <li>Samaritans on 116 123</li>
+        <li>999 in an emergency</li>
+      </ul>
     </div>
   </section>
 
