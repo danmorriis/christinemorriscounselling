@@ -350,6 +350,23 @@
   .price-card .amount sup{font-size:1.1rem;top:-.9em;}
   .price-card .mins{font-size:.82rem;color:var(--ink-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:.5rem;}
 
+  .reduced-fee{
+    max-width:800px;margin:1.5rem auto 0;padding:1.6rem 2rem;border-radius:1.2rem;
+    background:var(--olive);color:var(--eucalyptus);box-shadow:var(--shadow-soft);
+  }
+  .reduced-fee h3{color:var(--white);font-size:1.15rem;margin-bottom:.5rem;}
+  .reduced-fee p{font-size:.95rem;margin:0;}
+  .reduced-fee ul{list-style:none;margin:.8rem 0;padding:0;display:flex;flex-direction:column;gap:.35rem;}
+  .reduced-fee li{position:relative;padding-left:1.6rem;font-size:.95rem;}
+  .reduced-fee li::before{content:"";position:absolute;left:0;top:.35em;width:.8rem;height:.8rem;border:1.5px solid var(--gold);border-radius:.2rem;}
+
+  .payment-info{
+    max-width:800px;margin:1rem auto 0;padding:1.4rem 2rem;border-radius:1.2rem;
+    background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-soft);
+  }
+  .payment-info h3{font-size:1.15rem;margin-bottom:.4rem;}
+  .payment-info p{font-size:.95rem;color:var(--ink-muted);margin:0;}
+
   .faq-list{max-width:720px;margin:3rem auto 0;display:flex;flex-direction:column;gap:.8rem;}
   details.faq{background:var(--white);border:1px solid var(--line);border-radius:1rem;overflow:hidden;}
   details.faq summary{
@@ -362,6 +379,8 @@
   }
   details.faq[open] summary::after{transform:translateY(-50%) rotate(45deg);}
   details.faq .faq-body{padding:0 1.4rem 1.3rem;color:var(--ink-muted);font-size:.95rem;max-width:62ch;}
+  details.faq .faq-body p+p{margin-top:.9rem;}
+  details.faq .faq-body strong{color:var(--ink);font-weight:700;}
   details.faq summary:focus-visible{outline:2px solid var(--gold-dark);outline-offset:-2px;}
 
   .badge-row{display:flex;gap:.7rem;flex-wrap:wrap;}
@@ -1048,14 +1067,30 @@
       <div class="price-grid">
         <div class="price-card">
           <h3>Online &amp; Telephone Counselling</h3>
-          <div class="amount"><sup>£</sup>55</div>
+          <div class="amount"><sup>£</sup>50</div>
           <div class="mins">per 50-minute session</div>
         </div>
         <div class="price-card">
           <h3>Face-to-Face Counselling &amp; Walk &amp; Talk Therapy</h3>
-          <div class="amount"><sup>£</sup>65</div>
+          <div class="amount"><sup>£</sup>60</div>
           <div class="mins">per 50-minute session</div>
         </div>
+      </div>
+
+      <div class="reduced-fee">
+        <h3>Reduced Fee Sessions</h3>
+        <p>A limited number of reduced-fee sessions are available for:</p>
+        <ul>
+          <li>Students</li>
+          <li>People receiving benefits</li>
+          <li>Young adults aged 18-25</li>
+        </ul>
+        <p>Please get in touch to discuss availability and whether a reduced-fee space may be suitable for you.</p>
+      </div>
+
+      <div class="payment-info">
+        <h3>Payment Information</h3>
+        <p>Payment is accepted by bank transfer and is requested 48 hours before each session. Further details will be provided when your appointment is confirmed.</p>
       </div>
 
       <div class="faq-list">
@@ -1073,11 +1108,14 @@
         </details>
         <details class="faq">
           <summary>Are sessions confidential?</summary>
-          <div class="faq-body">Yes, except in rare safeguarding or legal circumstances.</div>
+          <div class="faq-body">
+            <p><strong>Confidentiality</strong><br>Everything discussed within counselling is treated as confidential. The full details of confidentiality and its limitations will be explained before counselling begins.</p>
+            <p><strong>Safeguarding</strong><br>There may be rare circumstances where confidentiality cannot be maintained, such as where there is a serious risk of harm to yourself or others, or where there is a legal obligation to disclose information.</p>
+          </div>
         </details>
         <details class="faq">
           <summary>What is your cancellation policy?</summary>
-          <div class="faq-body">48 hours' notice is requested.</div>
+          <div class="faq-body">If you need to cancel or rearrange a session, at least 48 hours' notice is requested wherever possible.</div>
         </details>
       </div>
     </div>
