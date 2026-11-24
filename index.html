@@ -184,7 +184,9 @@
 
   /* ---------- placeholder art ---------- */
   .art{position:relative;border-radius:1.4rem;overflow:hidden;background:var(--eucalyptus);min-height:240px;}
-  .art-caption{margin-top:.8rem;text-align:center;font-size:.74rem;line-height:1.5;letter-spacing:.02em;font-weight:600;color:var(--olive);}
+  .art-caption{list-style:none;margin:.9rem 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.45rem 1rem;font-size:.74rem;line-height:1.4;letter-spacing:.02em;font-weight:600;color:var(--olive);}
+  .art-caption li{position:relative;padding-left:.95rem;}
+  .art-caption li::before{content:"";position:absolute;left:0;top:.45em;width:.4rem;height:.4rem;border-radius:50%;background:var(--sage);}
   .art.square{aspect-ratio:1/1;min-height:0;}
   .art.portrait{aspect-ratio:4/5;min-height:0;}
   .art.wide{aspect-ratio:16/9;min-height:0;}
@@ -563,10 +565,12 @@
         <div class="art square">
           <img src="images/christine.jpg" alt="Christine Morris, counsellor">
         </div>
-        <div class="art-caption">
-          <p>MBACP Registered &middot; Person-Centred Counsellor</p>
-          <p>Enhanced DBS Checked &middot; Stevenage, Hertfordshire</p>
-        </div>
+        <ul class="art-caption">
+          <li>MBACP Registered</li>
+          <li>Person-Centred Counsellor</li>
+          <li>Enhanced DBS Checked</li>
+          <li>Stevenage, Hertfordshire</li>
+        </ul>
       </div>
       <div class="stack">
         <span class="eyebrow">A Warm Space At Your Own Pace</span>
@@ -590,7 +594,6 @@
     <div class="wrap reveal">
       <div class="section-head">
         <span class="eyebrow">Areas of Support</span>
-        <h2>Whatever you're carrying, there's space for it here</h2>
       </div>
       <div class="card-grid">
         <div class="area-card"><span class="icon-badge"><svg class="icon" style="width:1.4em;height:1.4em;" aria-hidden="true"><use href="#i-wave"/></svg></span><h3>Anxiety</h3><p>Gentle support to ease racing thoughts and find steadier ground.</p></div>
